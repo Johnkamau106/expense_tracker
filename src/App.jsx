@@ -4,8 +4,36 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [expenses, setExpenses] = useState([]); // State to store expenses
+  const [formData, setFormData] = useState({
+    name: '',
+    description: '',
+    category: '',
+    amount: '',
+    date: '',
+  });
+  const [searchTerm, setSearchTerm] = useState('');
 
+  
+
+
+  // Handle input changes
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  // Handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault(); // Prevent page reload
+    setExpenses([...expenses, formData]); // Add new expense to the list
+    setFormData({ name: '', description: '', category: '', amount: '', date: '' }); // Reset form
+  };
+  const filteredExpenses = expenses.filter((expense) =>
+    expense.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  
   return (
     <>
       <header>
@@ -16,62 +44,49 @@ function App() {
      <section>
       <h2> <b>Add Expense</b></h2>
       <p>Enter your expense details below</p>
-       <form action="">
-        <input type="text" placeholder="enter expense name"/> <br />
-        <input type="text" placeholder="enter expense description"/> <br />
-        <input type="text" placeholder="enter expense category"/> <br />
-        <input type="number" placeholder="enter amount"/> <br />
-        <input type="date" id="dateInput" name="dateInput"/> <br />
-        <button>submit</button>
+       <form onSubmit={handleSubmit}>
+        <input type="text"  name="name" placeholder="enter expense name" value={formData.name}
+            onChange={handleInputChange}/>{' '} <br />
+        <input type="text" name="description" placeholder="enter expense description"  value={formData.description}
+            onChange={handleInputChange}/>{' '}<br />
+        <input type="text" name="category" placeholder="enter expense category" value={formData.category}
+            onChange={handleInputChange}/>{' '}<br />
+        <input type="number" name="amount" placeholder="enter amount"  value={formData.amount}
+            onChange={handleInputChange}/>{' '}<br />
+        <input type="date" name="date" id="dateInput" id="dateInput" value={formData.date}
+            onChange={handleInputChange}/> {' '}<br />
+        <button type="submit">submit</button>
        </form>
          </section>
 
-         <div class="search-bar">
-          <input type="text" placeholder="search expenses" />
+         <div className="search-bar">
+          <input type="text" placeholder="search expenses" value={searchTerm}
+  onChange={(e) => setSearchTerm(e.target.value)}/>
           </div>
 
 
-         <div class="table-container">
+         <div className="table-container">
 
          
 
           <table>
-            <tr>
+            <tr >
             <th>Expense</th>
             <th>Description</th>
             <th>Category</th>
             <th>Amount</th>
             <th>Date</th>
             </tr>
-            <tr>
-              <td>matumbo</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>matumbo</td>
-              <td>ugali</td>
-              <td></td>
-              <td>mayai</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>matumbo</td>
-              <td>ugali</td>
-              <td></td>
-              <td>mayai</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>matumbo</td>
-              <td>ugali</td>
-              <td></td>
-              <td>mayai</td>
-              <td></td>
-            </tr>
 
+            {filteredExpenses.map((expense, index) => (
+              <tr key={index}>
+              <td>{expense.name}</td>
+              <td>{expense.description}</td>
+              <td>{expense.category}</td>
+              <td>{expense.amount}</td>
+              <td>{expense.date}</td>
+            </tr>
+           ))}
 
           </table>
 
