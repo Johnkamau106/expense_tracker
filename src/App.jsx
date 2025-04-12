@@ -8,26 +8,25 @@ function App() {
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <header>
+        <h1>Express Tracker</h1>
+        <p>Start taking control of your finances and life records, categorize and analyze your spending</p>
+      </header>
+     
+     <section>
+      <h3>Add Expense</h3>
+      <p>Enter your expense details below</p>
+       <form action="">
+        <input type="text" placeholder="enter exoense name"/> <br />
+        <input type="text" placeholder="enter expense description"/> <br />
+        <input type="text" placeholder="enter expense category"/> <br />
+        <input type="text" placeholder="enter expense amount"/> <br />
+        <button>submit</button>
+
+
+       </form>
+         </section>
+      
     </>
   )
 }
