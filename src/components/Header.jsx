@@ -1,7 +1,7 @@
 const Header = () => {
   return (
     <header>
-      <h1>Express Tracker</h1>
+      <h1>Expense Tracker</h1>
       <p>
         Start taking control of your finances and life records,
         <br /> categorize and analyze your spending

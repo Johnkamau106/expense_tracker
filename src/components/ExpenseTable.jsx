@@ -18,9 +18,9 @@ const ExpenseTable = ({ expenses }) => {
               <td>{expense.description}</td>
               <td>{expense.category}</td>
               <td>
-                {Number(expense.amount).toLocaleString('en-US', {
+                {Number(expense.amount).toLocaleString('en-ke', {
                   style: 'currency',
-                  currency: 'USD',
+                  currency: 'ksh',
                 })}
               </td>
               <td>{expense.date}</td>
